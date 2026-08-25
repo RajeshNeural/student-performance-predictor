@@ -34,20 +34,35 @@ predictions = model.predict(X_test)
 mae = mean_absolute_error(y_test, predictions)
 r2 = r2_score(y_test, predictions)
 
-print("Student Performance Predictor")
-print("-----------------------------")
-print(f"Mean Absolute Error: {mae:.2f}")
-print(f"R² Score: {r2:.2f}")
+print("\n===================================")
+print("   STUDENT PERFORMANCE PREDICTOR")
+print("===================================")
 
-# Example prediction
+print(f"\nModel MAE : {mae:.2f}")
+print(f"Model R²  : {r2:.2f}")
+
+# Get user input
+print("\nEnter student details:")
+print("-----------------------------------")
+
+study_hours = float(input("Study hours per day: "))
+attendance = float(input("Attendance percentage: "))
+previous_score = float(input("Previous exam score: "))
+sleep_hours = float(input("Sleep hours per day: "))
+assignments_completed = int(input("Assignments completed: "))
+
+# Create input data
 student = pd.DataFrame({
-    "study_hours": [6],
-    "attendance": [90],
-    "previous_score": [78],
-    "sleep_hours": [7],
-    "assignments_completed": [9]
+    "study_hours": [study_hours],
+    "attendance": [attendance],
+    "previous_score": [previous_score],
+    "sleep_hours": [sleep_hours],
+    "assignments_completed": [assignments_completed]
 })
 
+# Predict final score
 predicted_score = model.predict(student)[0]
 
-print(f"\nPredicted Final Score: {predicted_score:.2f}")
+print("\n===================================")
+print(f" Predicted Final Score: {predicted_score:.2f}")
+print("===================================\n")
